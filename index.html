@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISA Calculator</title>
+    <style>
+        #isa-calculator {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        #isa-calculator h2 {
+            text-align: center;
+        }
+        #isa-calculator label {
+            display: block;
+            margin-top: 10px;
+        }
+        #isa-calculator input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        #isa-calculator button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        #isa-calculator button:hover {
+            background-color: #45a049;
+        }
+        #isa-calculator p {
+            text-align: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div id="isa-calculator">
+    <h2>ISA Calculator</h2>
+    <label for="investmentAmount">Enter Investment Amount (£):</label>
+    <input type="number" id="investmentAmount" />
+    <label for="investmentYears">Enter Investment Years:</label>
+    <input type="number" id="investmentYears" />
+    <label for="interestRate">Enter Annual Interest Rate (%):</label>
+    <input type="number" id="interestRate" step="0.01" />
+    <button onclick="calculateISA()">Calculate</button>
+    <p id="result">Your ISA value after the specified years will appear here.</p>
+</div>
+
+<script>
+    function calculateISA() {
+        var investmentAmount = parseFloat(document.getElementById('investmentAmount').value);
+        var investmentYears = parseInt(document.getElementById('investmentYears').value);
+        var interestRate = parseFloat(document.getElementById('interestRate').value) / 100;
+
+        if (isNaN(investmentAmount) || isNaN(investmentYears) || isNaN(interestRate)) {
+            alert('Please enter valid numbers.');
+            return;
+        }
+
+        var totalValue = investmentAmount * Math.pow(1 + interestRate, investmentYears);
+
+        document.getElementById('result').innerHTML = 'Your ISA value after ' + investmentYears + ' years will be £' + totalValue.toFixed(2);
+    }
+</script>
+
+</body>
+</html>
